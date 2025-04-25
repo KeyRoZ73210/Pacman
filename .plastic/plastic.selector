@@ -1,0 +1,4 @@
+repository "Pacman 2025-04-25_15-28-44/Pacman@20066492375942@cloud"
+  path "/"
+    br "/main"
+    co "/main"
