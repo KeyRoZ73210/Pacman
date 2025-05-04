@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
@@ -9,9 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Ghost[] ghosts;
     [SerializeField] private Pacman pacman;
     [SerializeField] private Transform pellets;
-    [SerializeField] private Text gameOverText;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text livesText;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
 
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 3;
@@ -36,7 +37,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        NewGame();
+      gameOverText.enabled = false;
+      NewGame();
     }
 
     private void Update()
@@ -87,7 +89,14 @@ public class GameManager : MonoBehaviour
     private void SetLives(int lives)
     {
         this.lives = lives;
-        livesText.text = "x" + lives.ToString();
+
+        string viesTxt = "";
+        for (int i = 0; i < lives; i++)
+        {
+            viesTxt += "<sprite=0> ";
+        }
+
+        livesText.text = viesTxt;
     }
 
     private void SetScore(int score)
